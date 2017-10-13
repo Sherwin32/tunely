@@ -8,14 +8,15 @@
 
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/styles/styles.css">
+    <link rel="stylesheet" href="./styles/styles.css">
 
     <!-- VENDOR SCRIPTS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./scripts/handlebars-v4.0.10.js"></script>
 
     <!-- APPLICATION SCRIPTS -->
-    <script src="/public/scripts/app.js"></script>
+    <script src="./scripts/app.js"></script>
   </head>
   <body>
     <div class="jumbotron">
@@ -24,6 +25,76 @@
         <p>Your music binder!</p>
       </div>
     </div>
+<!-- MY FORM -->
+<!--   <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <form>
+
+        <input type="input" name="name">
+        <input type="input" name="artistName">
+        <input type="input" name="releaseDate">
+        <textarea type="input" name="genres"></textarea>
+        <input type="submit">
+      </form>
+    </div>
+  </div> -->
+
+
+  <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#album-form">Add New Album</button>
+ <!-- BEGIN FORM SAMPLE -->
+
+    <section id='album-form' class="container modal fade modal-dialog" >
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        <form id="create-album" class="form-horizontal modal-content">
+          <fieldset>
+            <!-- Form Name -->
+            <legend>Add New Album</legend>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="name">Album Name</label>
+              <div class="col-md-4">
+              <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="required">
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="artistName">Artist Name</label>
+              <div class="col-md-4">
+              <input id="textinput" name="artistName" type="text" placeholder="" class="form-control input-md" required="">
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="releaseDate">Release Date</label>
+              <div class="col-md-4">
+              <input id="releaseDate" name="releaseDate" type="text" placeholder="1992" class="form-control input-md" required>
+              </div>
+            </div>
+            <!-- Textarea -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="genres">Genres (separated by commas)</label>
+              <div class="col-md-4">
+                <textarea class="form-control" id="genres" name="genres" required="">rock, pop</textarea>
+              </div>
+            </div>
+            <!-- Button -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="singlebutton">Save Album</label>
+              <div class="col-md-4">
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      </div>
+    </section>  
+    <!-- endof form -->
+
 
     <section class="container">
       <div class="row">
@@ -46,9 +117,36 @@
 
 
                 <!-- begin album internal row -->
-                  <div class='row'>
+                   <div class='row'>
                     <div class="col-md-3 col-xs-12 thumbnail album-art">
-                      <img src="../public/images/800x800.png" alt="album image">
+                      <img src="./images/800x800.png" alt="album image">
+                    </div>
+                <script id="album-template" type="text/x-handlebars-template">
+                    {{#each album}}
+                    <div class="col-md-9 col-xs-12">
+                      <ul class="list-group">
+                        <li class="list-group-item">
+                          <h4 class='inline-header'>Album Name:</h4>
+                          <span class='album-name'>{{name}}</span>
+                        </li>
+
+                        <li class="list-group-item">
+                          <h4 class='inline-header'>Artist Name:</h4>
+                          <span class='artist-name'>{{artistName}}</span>
+                        </li>
+
+                        <li class="list-group-item">
+                          <h4 class='inline-header'>Released date:</h4>
+                          <span class='album-releaseDate'>{{releaseDate}}</span>
+                        </li>
+                      </ul>
+                    </div>
+                    {{/each}}
+                </script>
+
+<!--                   <div class='row'>
+                    <div class="col-md-3 col-xs-12 thumbnail album-art">
+                      <img src="./images/800x800.png" alt="album image">
                     </div>
 
                     <div class="col-md-9 col-xs-12">
@@ -70,7 +168,7 @@
                       </ul>
                     </div>
 
-                  </div>
+                  </div> -->
                   <!-- end of album internal row -->
 
                   <div class='panel-footer'>
